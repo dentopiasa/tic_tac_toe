@@ -15,3 +15,5 @@ const Gameboard = (function() {
 startBtn.addEventListener("click", ()=> {
     //Game.start()
 })
+
+haahahaahahahaah
