@@ -1,6 +1,4 @@
-const startBtn = document.querySelector("#play");
-
-const Gameboard = (function() {
+const Gameboard = (function() { //render gameboard
     let gameboard = ["", "", "", "", "", "", "", "", ""];
 
     const render = function() {
@@ -16,15 +14,32 @@ const Gameboard = (function() {
 }
 )();
 
-const Game = (() => {
+const createPlayer = (name, mark) => { //creates players
+    return {
+        name, 
+        mark
+    }
+}
+
+const Game = (() => { //game controls and logic
     let players = [];
-    let currentPlayerIndex = 0;
-    let gameOver = false;
+    let currentPlayerIndex;
+    let gameOver;
+
+    const start = () => {
+        players = [
+            createPlayer(document.querySelector("#player1").value,"X"),
+            createPlayer(document.querySelector("#player2").value,"O")
+        ]
+        currentPlayerIndex = 0;
+        gameOver = false;
+        Gameboard.render();
+    }
 })();
 
-
+const startBtn = document.querySelector("#play");
 startBtn.addEventListener("click", ()=> {
-    //Game.start()
+    Game.start();
 })
 
-
+  
