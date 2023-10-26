@@ -6,8 +6,8 @@ const Gameboard = (function() { //render gameboard
         gameboard.forEach(function(square, index){
             boardHTML += `<div class="square" id=square-${index}">${square}</div>`
         })
+        document.querySelector("#gameboard").innerHTML = boardHTML;
     }
-    document.querySelector("#gameboard").innerHTML = boardHTML;
     return {
         render,
     }
@@ -34,6 +34,9 @@ const Game = (() => { //game controls and logic
         currentPlayerIndex = 0;
         gameOver = false;
         Gameboard.render();
+    }
+    return {
+        start,
     }
 })();
 
