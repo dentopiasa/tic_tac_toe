@@ -7,14 +7,24 @@ const Gameboard = (() => { //render gameboard
             boardHTML += `<div class="square" id="square-${index}">${square}</div>`
         })
         document.querySelector("#gameboard").innerHTML = boardHTML;
+        const squares = document.querySelectorAll(".square");//square event
+        squares.forEach((square) => {
+            square.addEventListener("click", Game.handleClick);
+        })
+        
     }
     const update = (index, value) => {
         gameboard[index] = value;
         render();
     };
+
+//accessor method that can access but not modify. Checks if there is a mark on square so it cannot be clicked again
+    const getGameboard = () => gameboard;
+
     return {
         render,
-        update
+        update, 
+        getGameboard
     }
 }
 )();
@@ -46,7 +56,13 @@ const Game = (() => { //game controls and logic
     }
     const handleClick = (event) => { //handleCLick function
         let index = parseInt(event.target.id.split("-")[1]);//very helpful to identify where user clicks
+        
+        if (Gameboard.getGameboard()[index] !== "")
+        return
+
         Gameboard.update(index, players[currentPlayerIndex].mark)
+
+        currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     }
     return {
         start,
