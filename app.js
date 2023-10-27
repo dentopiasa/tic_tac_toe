@@ -64,15 +64,29 @@ const Game = (() => { //game controls and logic
 
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     }
+
+    const restart = () => {
+        for (i = 0; i < 9; i++) {
+            Gameboard.update(i, "");
+        }
+        Gameboard.render();
+    }
+
     return {
         start,
-        handleClick
+        handleClick,
+        restart
     }
 })();
 
 const startBtn = document.querySelector("#play");
 startBtn.addEventListener("click", ()=> {
     Game.start();
+})
+
+const restartBtn = document.querySelector("#restart");
+restartBtn.addEventListener("click", () => {
+    Game.restart();
 })
 
   
